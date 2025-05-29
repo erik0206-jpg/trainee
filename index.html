@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Residencial Masculino IAPE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f0f0f0;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5vw 10vw;
+            background-color: #F0EBE3;
+            color: #0E2B43;
+            position: relative;
+            z-index: 3;
+        }
+
+        .logo img {
+          width: 500px;
+          height: 181px;
+        }
+
+        .menu-icon {
+            font-size: 6vw;
+            cursor: pointer;
+        }
+
+        .nav-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 10vw;
+            background-color: #F0EBE3;
+            padding: 4vw;
+            border-radius: 5px;
+            z-index: 4;
+        }
+
+        .nav-menu.active {
+            display: block;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 2vw;
+            font-size: 4vw;
+        }
+
+        .nav-menu a:hover {
+            background-color: #F0EBE3;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10vw;
+            background-color: #3C54A2;
+            min-height: 80vh;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #F0EBE3;
+            clip-path: polygon(0 0, 100% 0, 100% 40%, 0 90%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 90%;
+            text-align: center;
+            z-index: 3;
+            margin-bottom: 5vw;
+        }
+
+        .hero-content h1 {
+            font-size: 10vw;
+            margin-bottom: 2vw;
+            color: #0E2B43;
+        }
+
+        .hero-content p {
+            font-size: 4vw;
+            margin-bottom: 4vw;
+            color: #0E2B43;
+        }
+
+        .hero-btn {
+            padding: 2vw 4vw;
+            background-color: transparent;
+            border: 2px solid #3C54A2;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 4vw;
+            color: #3C54A2;
+        }
+
+        .hero-circle {
+            position: relative;
+            width: 60vw;
+            height: 60vw;
+            background-color: #ffffff;
+            background-image: url('./images/hero-circle.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .smartphone {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(30deg);
+            width: 35vw;
+            height: 50vw;
+            background: url('./images/smartphone.jpg') no-repeat center/contain;
+            z-index: 3;
+        }
+
+        /* Middle Section */
+        .middle-section {
+            position: relative;
+            text-align: center;
+            padding: 30vw 10vw 10vw;
+            background-color: #3C54A2;
+        }
+
+        .middle-circle {
+            position: absolute;
+            top: -20vw;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40vw;
+            height: 40vw;
+            background-color: #fff;
+            background-image: url('./images/middle-circle.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .middle-section h2 {
+            font-size: 8vw;
+            margin-bottom: 4vw;
+            color: #0E2B43;
+            position: relative;
+            z-index: 2;
+        }
+
+        .middle-section p {
+            font-size: 4vw;
+            margin-bottom: 4vw;
+            color: #0E2B43;
+            position: relative;
+            z-index: 2;
+        }
+
+        .middle-btn {
+            padding: 2vw 4vw;
+            background-color: #2b3a55;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 4vw;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Options Section */
+        .options {
+            text-align: center;
+            padding: 10vw;
+            background: linear-gradient(to bottom, #3C54A2, #173886);
+            color: white;
+        }
+
+        .options h2 {
+            font-size: 8vw;
+            margin-bottom: 8vw;
+        }
+
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6vw;
+        }
+
+        .option-card {
+            text-align: center;
+            width: 80%;
+        }
+
+        .icon-circle-1 {
+            width: 30vw;
+            height: 30vw;
+            background-color: #e0e0e0;
+            background-image: url('./images/icon-circle-1.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+            margin: 0 auto 4vw;
+        }
+
+        .icon-circle-2 {
+            width: 30vw;
+            height: 30vw;
+            background-color: #e0e0e0;
+            background-image: url('./images/icon-circle-2.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+            margin: 0 auto 4vw;
+        }
+
+        .icon-circle-3 {
+            width: 30vw;
+            height: 30vw;
+            background-color: #e0e0e0;
+            background-image: url('./images/icon-circle-3.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+            margin: 0 auto 4vw;
+        }
+ 
+        .option-card h3 {
+            font-size: 6vw;
+            margin-bottom: 2vw;
+        }
+
+        .option-card p {
+            font-size: 3.5vw;
+            color: #d0d0d0;
+        }
+
+        /* Contact and Photos Sections */
+        #contact, #photos {
+            padding: 10vw;
+            text-align: center;
+            background-color: #173886;
+        }
+
+        #contact h2, #photos h2 {
+            font-size: 8vw;
+            margin-bottom: 4vw;
+            color: #0E2B43;
+        }
+
+        #contact p, #photos p {
+            font-size: 4vw;
+            color: #F0EBE3;
+        }
+
+        /* Media Queries for Larger Screens */
+        @media (min-width: 768px) {
+            header {
+                padding: 40px 80px;
+            }
+
+            .logo img {
+                max-width: 150px;
+            }
+
+            .menu-icon {
+                font-size: 24px;
+            }
+
+            .nav-menu {
+                padding: 20px;
+                right: 80px;
+            }
+
+            .nav-menu a {
+                padding: 10px;
+                font-size: 16px;
+            }
+
+            .hero {
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 50px;
+                min-height: 500px;
+            }
+
+            .hero-content {
+                max-width: 50%;
+                text-align: left;
+                margin-bottom: 0;
+            }
+
+            .hero-content h1 {
+                font-size: 48px;
+            }
+
+            .hero-content p {
+                font-size: 16px;
+                margin-bottom: 20px;
+            }
+
+            .hero-btn {
+                padding: 10px 20px;
+                font-size: 16px;
+            }
+
+            .hero-circle {
+                width: 350px;
+                height: 350px;
+            }
+
+            .smartphone {
+                width: 200px;
+                height: 300px;
+            }
+
+            .middle-section {
+                padding: 150px 50px 50px;
+            }
+
+            .middle-circle {
+                width: 200px;
+                height: 200px;
+                top: -100px;
+            }
+
+            .middle-section h2 {
+                font-size: 36px;
+            }
+
+            .middle-section p {
+                font-size: 16px;
+            }
+
+            .middle-btn {
+                padding: 10px 20px;
+                font-size: 16px;
+            }
+
+            .options {
+                padding: 50px;
+            }
+
+            .options h2 {
+                font-size: 36px;
+                margin-bottom: 40px;
+            }
+
+            .options-container {
+                flex-direction: row;
+                justify-content: center;
+                gap: 30px;
+            }
+
+            .option-card {
+                width: auto;
+            }
+
+            .icon-circle-1, .icon-circle-2, .icon-circle-3 {
+                width: 150px;
+                height: 150px;
+            }
+
+            .option-card h3 {
+                font-size: 24px;
+            }
+
+            .option-card p {
+                font-size: 14px;
+            }
+
+            #contact, #photos {
+                padding: 50px;
+            }
+
+            #contact h2, #photos h2 {
+                font-size: 36px;
+            }
+
+            #contact p, #photos p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="logo.png.png" alt="Logo">
+        </div>
+        <div class="menu-icon">☰</div>
+        <nav class="nav-menu">
+            <a href="#contact">Contact</a>
+            <a href="#photos">Photos</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>LANDING PAGE WIREFRAME.</h1>
+            <p>Lorem ipsum placeholder content text used for previewing layouts and visual mockups.</p>
+            <button class="hero-btn">More info</button>
+        </div>
+        <div class="hero-circle">
+            <div class="smartphone"></div>
+        </div>
+    </section>
+
+    <!-- Middle Section -->
+    <section class="middle-section">
+        <div class="middle-circle"></div>
+        <h2>Let's Make Something Great.</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.</p>
+        <a href="https://tourvirtual.uneb.org.br/iape/#24221540p&323.04h&49.32t" target="_blank">
+        <button class="middle-btn">Learn More</button>
+        </a>
+    </section>
+
+    <!-- Options Section -->
+    <section class="options">
+        <h2>OPTIONS</h2>
+        <div class="options-container">
+            <div class="option-card">
+                <div class="icon-circle-1"></div>
+                <h3>One Title</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+            <div class="option-card">
+                <div class="icon-circle-2"></div>
+                <h3>Two Title</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+            <div class="option-card">
+                <div class="icon-circle-3"></div>
+                <h3>Three Title</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Email: contact@example.com</p>
+        <p>Phone: (123) 456-7890</p>
+    </section>
+
+    <!-- Photos Section -->
+    <section id="photos">
+        <h2>Photos</h2>
+        <p>Gallery coming soon!</p>
+    </section>
+
+    <script>
+        // Menu toggle functionality
+        const menuIcon = document.querySelector('.menu-icon');
+        const navMenu = document.querySelector('.nav-menu');
+
+        menuIcon.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!menuIcon.contains(event.target) && !navMenu.contains(event.target)) {
+                navMenu.classList.remove('active');
+            }
+        });
+
+        // Button hover effects
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach(button => {
+            button.addEventListener('mouseover', () => {
+                button.style.opacity = '0.8';
+            });
+            button.addEventListener('mouseout', () => {
+                button.style.opacity = '1';
+            });
+        });
+    </script>
+</body>
+</html>
